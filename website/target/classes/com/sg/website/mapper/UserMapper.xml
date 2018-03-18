@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace must indicate mapper interface full package path -->
+<mapper namespace="com.sg.website.mapper.UserMapper">
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id"  >
+      INSERT INTO USER (name,password,phone,email) VALUES (#{name},#{password},#{phone},#{email})
+    </insert>
+
+    <select id="findOne" resultType="User">
+        select* from USER
+        <where>
+            <if test="email!=null">
+                email=#{email}
+            </if>
+            <if test="uid!=null">
+                uid=#{uid}
+            </if>
+        </where>
+    </select>
+</mapper>
